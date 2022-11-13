@@ -2,13 +2,15 @@ package com.wydpp.controller;
 
 import com.wydpp.gb28181.bean.SipDevice;
 import com.wydpp.gb28181.bean.SipPlatform;
-import com.wydpp.gb28181.commander.FfmpegCommander;
 import com.wydpp.gb28181.commander.IFfmpegCommander;
 import com.wydpp.gb28181.commander.SIPCommander;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
 @RestController
@@ -29,7 +31,7 @@ public class GB28181ClientController {
     @Autowired
     private IFfmpegCommander ffmpegCommander;
 
-    @PutMapping(path = "/register")
+    @GetMapping(path = "/register")
     public DeferredResult<String> register() {
         DeferredResult<String> result = new DeferredResult<>(1000 * 5L);
         result.onTimeout(() -> {
@@ -49,7 +51,7 @@ public class GB28181ClientController {
         return result;
     }
 
-    @PutMapping(path = "/unRegister")
+    @GetMapping(path = "/unRegister")
     public DeferredResult<String> unRegister() {
         DeferredResult<String> result = new DeferredResult<>(1000 * 5L);
         result.onTimeout(() -> {
@@ -67,8 +69,8 @@ public class GB28181ClientController {
         return result;
     }
 
-    @PutMapping(path = "/closePush")
-    public String closePush(@RequestParam(name = "callId",required = false)String callId) {
+    @GetMapping(path = "/closePush")
+    public String closePush(@RequestParam(name = "callId", required = false) String callId) {
         ffmpegCommander.closeStream(callId);
         return "停止推流成功!";
     }

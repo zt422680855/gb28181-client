@@ -1,0 +1,27 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="gbClient205" type="docker-deploy" factoryName="docker-image" server-name="205">
+    <deployment type="docker-image">
+      <settings>
+        <option name="imageTag" value="gb28181-client:1.0-SNAPSHOT" />
+        <option name="command" value="" />
+        <option name="containerName" value="gbClient" />
+        <option name="entrypoint" value="" />
+        <option name="portBindings">
+          <list>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="8085" />
+              <option name="hostPort" value="8086" />
+            </DockerPortBindingImpl>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="5065" />
+              <option name="hostPort" value="5065" />
+              <option name="protocol" value="udp" />
+            </DockerPortBindingImpl>
+          </list>
+        </option>
+        <option name="commandLineOptions" value="" />
+      </settings>
+    </deployment>
+    <method v="2" />
+  </configuration>
+</component>

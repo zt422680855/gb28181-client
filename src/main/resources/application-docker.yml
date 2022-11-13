@@ -1,0 +1,6 @@
+
+ffmpeg:
+    #ffmpeg执行文件路径
+    path: /usr/local/bin/ffmpeg
+    #模拟推送视频流的命令
+    pushStreamCmd: -re -stream_loop -1 -i {filePath} -vcodec h264 -acodec aac -f rtp_mpegts rtp://{ip}:{port}

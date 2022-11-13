@@ -77,9 +77,11 @@ public class InviteRequestProcessor extends SIPRequestProcessorParent implements
 
     static {
         try {
-            VIDEO_FILE = ResourceUtils.getFile("classpath:device/videofile.h264").getAbsolutePath();
-            RECORD_VIDEO_FILE = ResourceUtils.getFile("classpath:device/record.h264").getAbsolutePath();
-        } catch (FileNotFoundException e) {
+            // VIDEO_FILE = ResourceUtils.getFile("classpath:device/videofile.h264").getAbsolutePath();
+            VIDEO_FILE = "/videofile.h264";
+            // RECORD_VIDEO_FILE = ResourceUtils.getFile("classpath:device/record.h264").getAbsolutePath();
+            RECORD_VIDEO_FILE = "/record.h264";
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
