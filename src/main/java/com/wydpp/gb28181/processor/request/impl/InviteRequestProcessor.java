@@ -77,10 +77,10 @@ public class InviteRequestProcessor extends SIPRequestProcessorParent implements
 
     static {
         try {
-            // VIDEO_FILE = ResourceUtils.getFile("classpath:device/videofile.h264").getAbsolutePath();
-            VIDEO_FILE = "/videofile.h264";
-            // RECORD_VIDEO_FILE = ResourceUtils.getFile("classpath:device/record.h264").getAbsolutePath();
-            RECORD_VIDEO_FILE = "/record.h264";
+            VIDEO_FILE = ResourceUtils.getFile("classpath:device/videofile.h264").getAbsolutePath();
+            // VIDEO_FILE = "/videofile.h264";
+            RECORD_VIDEO_FILE = ResourceUtils.getFile("classpath:device/record.h264").getAbsolutePath();
+            // RECORD_VIDEO_FILE = "/record.h264";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -164,10 +164,11 @@ public class InviteRequestProcessor extends SIPRequestProcessorParent implements
             sendRtpItem.setIp(addressStr);
             sendRtpItem.setPort(port);
             CallIdHeader callIdHeader = (CallIdHeader) request.getHeader(CallIdHeader.NAME);
+            final int ssrcInt = Integer.parseInt(ssrc);
             sipSubscribe.addOkSubscribe(callIdHeader.getCallId(), eventResult -> {
                 logger.info("开始推流");
                 ffmpegCommander.closeAllStream();
-                ffmpegCommander.pushStream(eventResult.callId, filePath.get(), sendRtpItem.getIp(), sendRtpItem.getPort());
+                ffmpegCommander.pushStream(eventResult.callId, filePath.get(), sendRtpItem.getIp(), sendRtpItem.getPort(), ssrcInt);
             });
             StringBuffer content = new StringBuffer(200);
             content.append("v=0\r\n");

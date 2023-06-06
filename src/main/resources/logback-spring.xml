@@ -36,10 +36,30 @@
         </filter>
     </appender>
 
+    <!--<appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        &lt;!&ndash;  logstash地址 端口&ndash;&gt;
+        <destination>117.71.59.159:4560</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <providers>
+                <timestamp/>
+                <version/>
+                <message/>
+                <loggerName/>
+                <threadName/>
+                <logLevel/>
+                <callerData/>
+            </providers>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>-->
+
     <!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
     <root level="INFO">
         <appender-ref ref="console"/>
         <appender-ref ref="logFile"/>
         <appender-ref ref="error"/>
+<!--        <appender-ref ref="stash"/>-->
     </root>
 </configuration>

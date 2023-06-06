@@ -173,8 +173,8 @@ public class SIPCommander implements ISIPCommander {
     @Override
     public boolean catalogResponse(SipPlatform sipPlatform, SipDevice sipDevice, String sn, String fromTag) {
         try {
-            // File file = ResourceUtils.getFile("classpath:device/catalog.xml");
-            File file = new File("/catalog.xml");
+            File file = ResourceUtils.getFile("classpath:device/catalog.xml");
+            // File file = new File("/catalog.xml");
             List<String> catalogList = Files.readAllLines(file.toPath());
             StringBuffer catalogXml = new StringBuffer();
             for (String xml : catalogList) {
@@ -201,8 +201,8 @@ public class SIPCommander implements ISIPCommander {
     @Override
     public boolean deviceInfoResponse(SipPlatform sipPlatform, SipDevice sipDevice, String sn, String fromTag) {
         try {
-            // File file = ResourceUtils.getFile("classpath:device/deviceInfo.xml");
-            File file = new File("/deviceInfo.xml");
+            File file = ResourceUtils.getFile("classpath:device/deviceInfo.xml");
+            // File file = new File("/deviceInfo.xml");
             List<String> catalogList = Files.readAllLines(file.toPath());
             StringBuffer catalogXml = new StringBuffer();
             for (String xml : catalogList) {
@@ -237,8 +237,8 @@ public class SIPCommander implements ISIPCommander {
         try {
             StringBuffer catalogXml = new StringBuffer();
             if (hasRecordInfo) {
-                // File file = ResourceUtils.getFile("classpath:device/recordInfo.xml");
-                File file = new File("/recordInfo.xml");
+                File file = ResourceUtils.getFile("classpath:device/recordInfo.xml");
+                // File file = new File("/recordInfo.xml");
                 List<String> catalogList = Files.readAllLines(file.toPath());
                 for (String xml : catalogList) {
                     catalogXml.append(xml.replaceAll("\\$\\{SN\\}", sn)

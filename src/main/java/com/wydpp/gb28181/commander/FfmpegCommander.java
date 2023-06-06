@@ -23,7 +23,7 @@ public class FfmpegCommander implements IFfmpegCommander {
 
     private static final Map<String, Process> processMap = new ConcurrentHashMap<>();
 
-    public String pushStream(String callId, String filePath, String ip, int port) {
+    public String pushStream(String callId, String filePath, String ip, int port, int ssrc) {
         String command = systemConfig.getFfmpegPath() + " " +
                 systemConfig.getFfmpegPushStreamCmd().replace("{filePath}", filePath).replace("{ip}", ip).replace("{port}", port + "");
         logger.info("callId={},\r\n推流命令={}", callId, command);
@@ -33,6 +33,7 @@ public class FfmpegCommander implements IFfmpegCommander {
                 int code = 0;
                 try {
                     Process process = runtime.exec(command);
+                    // Process process = runtime.exec("ffmpeg -f dshow -i video=\"HP Wide Vision HD Camera\" -vcodec libx264 -acodec aac -f rtp -ssrc " + ssrc + " rtp://" + ip + ":" + port);
                     processMap.put(callId, process);
                     InputStream errorInputStream = process.getErrorStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(errorInputStream));
